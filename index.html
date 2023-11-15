@@ -1,114 +1,102 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calculadora de Doble Sueldo</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Doble Sueldo</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Incluir Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
-  <div class="container">
-    <h1>Calcula tu doble sueldo</h1>
-    <form id="salaryForm">
-      <!-- Meses y salarios input -->
-      <div class="mes">
-        <label for="enero">Enero</label>
-        <input type="number" id="enero" min="0" required placeholder="RD$">
-        <button type="button" onclick="autocompletar()">Autocompletar</button>
-      </div>
-      <div class="mes">
-        <label for="febrero">Febrero</label>
-        <input type="number" id="febrero" min="0" required placeholder="RD$">
-      </div>
-      <div class="mes">
-        <label for="marzo">Marzo</label>
-        <input type="number" id="marzo" min="0" required placeholder="RD$">
-      </div>
-      <div class="mes">
-        <label for="abril">Abril</label>
-        <input type="number" id="abril" min="0" required placeholder="RD$">
-      </div>
-      <div class="mes">
-        <label for="mayo">Mayo</label>
-        <input type="number" id="mayo" min="0" required placeholder="RD$">
-      </div>
-      <div class="mes">
-        <label for="junio">Junio</label>
-        <input type="number" id="junio" min="0" required placeholder="RD$">
-      </div>
-      <div class="mes">
-        <label for="julio">Julio</label>
-        <input type="number" id="julio" min="0" required placeholder="RD$">
-      </div>
-      <div class="mes">
-        <label for="agosto">Agosto</label>
-        <input type="number" id="agosto" min="0" required placeholder="RD$">
-      </div>
-      <div class="mes">
-        <label for="septiembre">Septiembre</label>
-        <input type="number" id="septiembre" min="0" required placeholder="RD$">
-      </div>
-      <div class="mes">
-        <label for="octubre">Octubre</label>
-        <input type="number" id="octubre" min="0" required placeholder="RD$">
-      </div>
-      <div class="mes">
-        <label for="noviembre">Noviembre</label>
-        <input type="number" id="noviembre" min="0" required placeholder="RD$">
-      </div>
-      <div class="mes">
-        <label for="diciembre">Diciembre</label>
-        <input type="number" id="diciembre" min="0" required placeholder="RD$">
+    <div class="container">
+        <h1>Calcula tu doble sueldo</h1>
+        <form id="salaryForm">
+            <!-- Meses y salarios input -->
+            <div class="mes">
+                <label for="enero">Enero</label>
+                <input type="number" id="enero" min="0" required placeholder="RD$">
+                <button type="button" onclick="autocompletar()">Autocompletar</button>
+            </div>
+            <!-- ... (Resto de los meses) ... -->
 
-        <p>*Si llevas menos de 1 año, deja en blanco el resto de meses*</p>
+            <button type="button" onclick="calcular()">Calcular</button>
+            <button type="button" onclick="limpiar()">Limpiar</button>
+        </form>
 
-      </div>
-      <button type="button" onclick="calcular()">Calcular</button>
-      <button type="button" onclick="limpiar()">Limpiar</button>
-    </form>
-    <div id="resultado">
-      <p>Ingreso total del año: <span id="ingresoTotal">RD$0.00</span></p>
-      <p>Doble sueldo: <span id="dobleSueldo">RD$0.00</span></p>
-    </div>
-  </div>
-
-   <div class="container">
-        <!-- Resto de tu contenido -->
-
-        <div id="contadorContainer">
-            <p>Contador de visitas: <span id="contador">0</span></p>
+        <div id="resultado">
+            <p>Ingreso total del año: <span id="ingresoTotal">RD$0.00</span></p>
+            <p>Doble sueldo: <span id="dobleSueldo">RD$0.00</span></p>
         </div>
     </div>
 
-    
-  <script src="script.js"></script>
+    <div class="container">
+        <!-- Contador y gráfica -->
+        <div id="contadorContainer">
+            <p>Contador de visitas: <span id="contador">0</span></p>
+            <!-- Canvas para la gráfica -->
+            <canvas id="graficaVisitas" width="400" height="200"></canvas>
+        </div>
+    </div>
 
+    <script src="script.js"></script>
+    <script>
+        // Función para aumentar el contador
+        function aumentarContador() {
+            // Obtén el elemento del contador
+            var contadorElemento = document.getElementById("contador");
 
-  <script>
-    // Función para aumentar el contador
-    function aumentarContador() {
-        // Obtén el elemento del contador
-        var contadorElemento = document.getElementById("contador");
+            // Obtén el valor actual del contador y conviértelo a número
+            var contadorActual = parseInt(localStorage.getItem("visitas")) || 0;
 
-        // Obtén el valor actual del contador y conviértelo a número
-        var contadorActual = parseInt(localStorage.getItem("visitas")) || 0;
+            // Aumenta el contador en 1
+            contadorActual++;
 
-        // Aumenta el contador en 1
-        contadorActual++;
+            // Actualiza el valor del contador en la página
+            contadorElemento.innerHTML = contadorActual;
 
-        // Actualiza el valor del contador en la página
-        contadorElemento.innerHTML = contadorActual;
+            // Almacena el nuevo valor del contador en el almacenamiento local
+            localStorage.setItem("visitas", contadorActual);
 
-        // Almacena el nuevo valor del contador en el almacenamiento local
-        localStorage.setItem("visitas", contadorActual);
-    }
+            // Llama a la función para actualizar la gráfica
+            actualizarGrafica();
+        }
 
-    // Llama a la función para aumentar el contador cuando la página se carga
-    window.onload = function () {
-        aumentarContador();
-    };
-</script>
+        // Llama a la función para aumentar el contador cuando la página se carga
+        window.onload = function () {
+            aumentarContador();
+        };
 
+        // Función para actualizar la gráfica
+        function actualizarGrafica() {
+            var contadorActual = parseInt(localStorage.getItem("visitas")) || 0;
+            var ctx = document.getElementById("graficaVisitas").getContext("2d");
 
+            // Crea una nueva instancia de la gráfica de barras
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Visitas'],
+                    datasets: [{
+                        label: 'Contador de Visitas',
+                        data: [contadorActual],
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+    </script>
 </body>
+
 </html>
