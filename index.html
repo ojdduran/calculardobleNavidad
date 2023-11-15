@@ -71,6 +71,41 @@
       <p>Doble sueldo: <span id="dobleSueldo">RD$0.00</span></p>
     </div>
   </div>
+
+   <div class="container">
+        <!-- Resto de tu contenido -->
+
+        <div id="contadorContainer">
+            <p>Contador de visitas: <span id="contador">0</span></p>
+        </div>
+    </div>
+
+    
   <script src="script.js"></script>
+
+
+  <script>
+    // Función para aumentar el contador
+    function aumentarContador() {
+        // Obtén el elemento del contador
+        var contadorElemento = document.getElementById("contador");
+
+        // Obtén el valor actual del contador y conviértelo a número
+        var contadorActual = parseInt(contadorElemento.innerHTML);
+
+        // Aumenta el contador en 1
+        contadorActual++;
+
+        // Actualiza el valor del contador en la página
+        contadorElemento.innerHTML = contadorActual;
+    }
+
+    // Llama a la función para aumentar el contador cuando la página se carga
+    window.onload = function() {
+        aumentarContador();
+    };
+</script>
+
+
 </body>
 </html>
