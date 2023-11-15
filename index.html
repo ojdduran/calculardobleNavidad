@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Doble Sueldo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Calcula tu doble sueldo</h1>
+    <form id="salaryForm">
+      <!-- Meses y salarios input -->
+      <div class="mes">
+        <label for="enero">Enero</label>
+        <input type="number" id="enero" min="0" required placeholder="RD$">
+        <button type="button" onclick="autocompletar()">Autocompletar</button>
+      </div>
+      <div class="mes">
+        <label for="febrero">Febrero</label>
+        <input type="number" id="febrero" min="0" required placeholder="RD$">
+      </div>
+      <div class="mes">
+        <label for="marzo">Marzo</label>
+        <input type="number" id="marzo" min="0" required placeholder="RD$">
+      </div>
+      <div class="mes">
+        <label for="abril">Abril</label>
+        <input type="number" id="abril" min="0" required placeholder="RD$">
+      </div>
+      <div class="mes">
+        <label for="mayo">Mayo</label>
+        <input type="number" id="mayo" min="0" required placeholder="RD$">
+      </div>
+      <div class="mes">
+        <label for="junio">Junio</label>
+        <input type="number" id="junio" min="0" required placeholder="RD$">
+      </div>
+      <div class="mes">
+        <label for="julio">Julio</label>
+        <input type="number" id="julio" min="0" required placeholder="RD$">
+      </div>
+      <div class="mes">
+        <label for="agosto">Agosto</label>
+        <input type="number" id="agosto" min="0" required placeholder="RD$">
+      </div>
+      <div class="mes">
+        <label for="septiembre">Septiembre</label>
+        <input type="number" id="septiembre" min="0" required placeholder="RD$">
+      </div>
+      <div class="mes">
+        <label for="octubre">Octubre</label>
+        <input type="number" id="octubre" min="0" required placeholder="RD$">
+      </div>
+      <div class="mes">
+        <label for="noviembre">Noviembre</label>
+        <input type="number" id="noviembre" min="0" required placeholder="RD$">
+      </div>
+      <div class="mes">
+        <label for="diciembre">Diciembre</label>
+        <input type="number" id="diciembre" min="0" required placeholder="RD$">
+
+        <p>*Si llevas menos de 1 año, deja en blanco el resto de meses*</p>
+
+      </div>
+      <button type="button" onclick="calcular()">Calcular</button>
+      <button type="button" onclick="limpiar()">Limpiar</button>
+    </form>
+    <div id="resultado">
+      <p>Ingreso total del año: <span id="ingresoTotal">RD$0.00</span></p>
+      <p>Doble sueldo: <span id="dobleSueldo">RD$0.00</span></p>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
