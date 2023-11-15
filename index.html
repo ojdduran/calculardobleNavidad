@@ -91,17 +91,20 @@
         var contadorElemento = document.getElementById("contador");
 
         // Obtén el valor actual del contador y conviértelo a número
-        var contadorActual = parseInt(contadorElemento.innerHTML);
+        var contadorActual = parseInt(localStorage.getItem("visitas")) || 0;
 
         // Aumenta el contador en 1
         contadorActual++;
 
         // Actualiza el valor del contador en la página
         contadorElemento.innerHTML = contadorActual;
+
+        // Almacena el nuevo valor del contador en el almacenamiento local
+        localStorage.setItem("visitas", contadorActual);
     }
 
     // Llama a la función para aumentar el contador cuando la página se carga
-    window.onload = function() {
+    window.onload = function () {
         aumentarContador();
     };
 </script>
