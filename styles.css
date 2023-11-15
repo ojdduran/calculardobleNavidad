@@ -1,0 +1,65 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212;
+    color: #fff;
+  }
+  
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    position: relative;
+  }
+  
+  .mes {
+    margin-bottom: 10px;
+  }
+  
+  /* Estilos comunes para etiquetas de formulario */
+  label {
+    display: inline-block;
+    width: 80px;
+    margin-bottom: 8px;
+    color: #50fd00; /* Verde brillante para las etiquetas */
+  }
+  
+  /* Estilos comunes para botones */
+  button {
+    margin: 5px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    background-color: #d6b602; /* Verde brillante para los botones */
+    color: #fff;
+  }
+  
+  button:hover {
+    background-color: #4de84d; /* Verde más oscuro al pasar el ratón */
+  }
+  
+  /* Resultados */
+  #resultado {
+    margin-top: 20px;
+  }
+  
+  /* Estilo futurista para el contenedor principal */
+  .container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #5aff5a, #042db3); /* Degradado verde a negro */
+    z-index: -1;
+    opacity: 0.8;
+  }
+  
+  /* Agregar más estilos según sea necesario */
+  
